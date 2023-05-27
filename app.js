@@ -70,12 +70,13 @@ document.getElementById("myForm").addEventListener("submit", function (event) {
   reader.readAsBinaryString(file);
 });
 
-
+// Aqui creamos, validamos is exite el drag y si no lo agregamos al div.
 var isAdvancedUpload = function() {
   var div = document.createElement('div');
   return (('draggable' in div) || ('ondragstart' in div && 'ondrop' in div)) && 'FormData' in window && 'FileReader' in window;
 }();
 
+// Definicion de variables
 let draggableFileArea = document.querySelector(".drag-file-area");
 let browseFileText = document.querySelector(".browse-files");
 let uploadIcon = document.querySelector(".upload-icon");
@@ -91,17 +92,18 @@ let removeFileButton = document.querySelector(".remove-file-icon");
 let uploadButton = document.querySelector(".upload-button");
 let fileFlag = 0;
 
+// Agregamos un evento al input para que al hacer click se elimine el valor que tiene.
 fileInput.addEventListener("click", () => {
 	fileInput.value = '';
-	console.log(fileInput.value);
+	console.log("valor vacio");
 });
 
+// Agregamos el evento change para que al seleccionar un archivo, cambie los valores de elementos optenidos.
 fileInput.addEventListener("change", e => {
 	console.log(" > " + fileInput.value)
 	uploadIcon.innerHTML = 'check_circle';
 	dragDropText.innerHTML = 'El archivo se subió con éxito!';
-	// document.querySelector(".label").innerHTML = `soltar aquí o <span class="browse-files"> <input type="file" id="fileInput2" class="default-file-input" style=""/> <span class="browse-files-text" style="top: 0;">Elija el archivo</span></span>`;
-	uploadButton.innerHTML = `Upload`;
+  uploadButton.innerHTML = `Upload`;
 	fileName.innerHTML = fileInput.files[0].name;
 	fileSize.innerHTML = (fileInput.files[0].size/1024).toFixed(1) + " KB";
 	uploadedFile.style.cssText = "display: flex;";
@@ -119,7 +121,7 @@ uploadButton.addEventListener("click", () => {
     		function frame() {
       			if (width >= 390) {
         			clearInterval(id);
-					uploadButton.innerHTML = `<span class="material-icons-outlined upload-button-icon"> check_circle </span> Uploaded`;
+					// uploadButton.innerHTML = `<span class="material-icons-outlined upload-button-icon"> check_circle </span> Uploaded`;
       			} else {
         			width += 5;
         			progressBar.style.width = width + "px";
@@ -148,15 +150,14 @@ if(isAdvancedUpload) {
 			e.preventDefault();
 			e.stopPropagation();
 			uploadIcon.innerHTML = 'file_download';
-			dragDropText.innerHTML = 'Drop your file here!';
+			dragDropText.innerHTML = '¡Deja tu archivo aquí!';
 		});
 	});
 
 	draggableFileArea.addEventListener("drop", e => {
 		uploadIcon.innerHTML = 'check_circle';
 		dragDropText.innerHTML = 'El archivo se subió con éxito!';
-		// document.querySelector(".label").innerHTML = `soltar aquí o <span class="browse-files"> <input type="file" id="fileInput3" class="default-file-input" style=""/> <span class="browse-files-text" style="top: -23px; left: -20px;">Elija el archivo</span> </span>`;
-		uploadButton.innerHTML = `Upload`;
+		// uploadButton.innerHTML = `Upload`;
 		
 		let files = e.dataTransfer.files;
 		fileInput.files = files;
@@ -175,7 +176,6 @@ removeFileButton.addEventListener("click", () => {
 	fileInput.value = '';
 	uploadIcon.innerHTML = 'file_upload';
 	dragDropText.innerHTML = 'Suelta tu archivo aquí o';
-	// document.querySelector(".label").innerHTML = `<span class="browse-files"> <input type="file" id="fileInput" class="default-file-input"/> <span class="browse-files-text">Elija el archivo</span> <span>desde el dispositivo</span> </span>`;
-	uploadButton.innerHTML = `Upload`;
+	// uploadButton.innerHTML = `Upload`;
 });
 //FINN
