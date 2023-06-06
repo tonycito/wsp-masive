@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>envio de wsp masivo</title>
     <link
       href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined"
       rel="stylesheet" />
@@ -12,43 +12,110 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
   </head>
   <body>
-    <form id="myForm" class="form-container" enctype="multipart/form-data">
-      <div class="upload-files-container">
-        <div class="drag-file-area">
-          <span class="material-icons-outlined upload-icon"> file_upload </span>
-          <h3 class="dynamic-message">Suelta tu archivo aquí o</h3>
-          <label class="label">
-            <span class="browse-files">
-              <input
-                type="file"
-                id="fileInput1"
-                name="fileInput"
-                class="default-file-input"
-                accept=".xlsx" />
-
-              <span class="browse-files-text">Elija el archivo</span>
-              <span> desde el dispositivo</span>
+    <div>
+      <form id="myForm" class="form-container" enctype="multipart/form-data">
+        <div class="upload-files-container">
+          <div class="drag-file-area">
+            <span class="material-icons-outlined upload-icon">
+              file_upload
             </span>
-          </label>
-        </div>
-        <span class="cannot-upload-message">
-          <span class="material-icons-outlined">error</span> Seleccione un
-          archivo primero
-          <span class="material-icons-outlined cancel-alert-button"
-            >cancelar</span
-          >
-        </span>
-        <div class="file-block">
-          <div class="file-info">
-            <span class="material-icons-outlined file-icon">description</span>
-            <span class="file-name"> </span> | <span class="file-size"> </span>
+            <h3 class="dynamic-message">Suelta tu archivo aquí o</h3>
+            <label class="label">
+              <span class="browse-files">
+                <input
+                  type="file"
+                  id="fileInput1"
+                  name="fileInput"
+                  class="default-file-input"
+                  accept=".xlsx" />
+
+                <span class="browse-files-text">
+                  <span class="material-icons-outlined icon-boton">upload</span>
+                  Elija el archivo</span
+                >
+                <span class="text-upload"> desde el dispositivo</span>
+              </span>
+            </label>
           </div>
-          <span class="material-icons remove-file-icon">delete</span>
-          <div class="progress-bar"></div>
+          <span class="cannot-upload-message">
+            <span class="material-icons-outlined">error</span> Seleccione un
+            archivo primero
+            <span class="material-icons-outlined cancel-alert-button"
+              >cancelar</span
+            >
+          </span>
+          <div class="file-block">
+            <div class="file-info">
+              <span class="material-icons-outlined file-icon">description</span>
+              <span class="file-name"> </span> |
+              <span class="file-size"> </span>
+            </div>
+            <span class="material-icons remove-file-icon">delete</span>
+            <div class="progress-bar"></div>
+          </div>
+
+          <a class="next-tab" onclick="verificar();"
+            >Siguiente
+            <span class="material-icons-outlined">arrow_forward</span></a
+          >
         </div>
-        <input type="submit" value="Enviar" class="upload-button" />
-      </div>
-    </form>
+
+        <div class="upload-files-container-2" style="display: none">
+          <div class="first-message-container">
+            <div class="contenedor1">
+              <h4><span>¡CONECTA</span> con tu Cliente!</h4>
+              <textarea
+                id="first-area"
+                placeholder="Escribe tu mensaje"
+                rows="15"
+                cols="30"></textarea>
+              <div id="errorMessage" class="error-message"></div>
+            </div>
+            <div class="contenedor2">
+              <h4>VISTA <span>WhatsApp</span></h4>
+              <div class="container-message">
+                <!-- <p class="text-example" id="second-area"></p> -->
+                <div class="chat-window">
+                  <div class="chat-bubble">
+                    <div class="message" id="second-area">
+                      ¡Ejemplo mensaje!
+                    </div>
+                    <div class="timestamp">10:00 AM</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="second-message-container">
+            <!-- <input type="submit" value="Enviar" class="upload-button" /> -->
+            <button type="submit" class="upload-button">
+              Enviar
+              <span class="material-icons-outlined icon-boton"> send</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="upload-files-container-3" style="visibility: hidden">
+          <div class="first-area">
+            <span class="material-icons-outlined upload-icon">
+              check_circle</span
+            >
+            <h2 class="dynamic-message">
+              ¡Mensajes enviados satisfactoriamente!
+            </h2>
+            <span class="browse-files-text"
+              >A todos sus contactos de WhatsApp</span
+            >
+          </div>
+          <a class="return-tab" onclick="returnHome()"
+            >Enviar otro mensaje
+            <span class="material-icons-outlined upload-icon">
+              exit_to_app</span
+            ></a
+          >
+        </div>
+      </form>
+    </div>
     <script src="./app.js"></script>
   </body>
 </html>
